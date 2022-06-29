@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-probe
+  labels:
+    app: backend-probe
+spec:
+  ports:
+    - port: {{ .Values.appPort }}
+      name: http
+  selector:
+    app: backend-probe
