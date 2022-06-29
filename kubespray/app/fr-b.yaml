@@ -1,0 +1,40 @@
+# Config Stage env
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-back-pod
+  labels:
+    app: front-back-app
+spec:
+  selector:
+    matchLabels:
+      app: front-back-app
+  template:
+    metadata:
+      labels:
+        app: front-back-app
+    spec:
+    # Config Containers
+      containers:
+      - name: frontend
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: backend
+        image: debian
+        command: ["sleep", "600"]
+---
+# Config Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-back-service
+  labels:
+    app: front-back-app
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30080
+  selector:
+    app: front-back-app

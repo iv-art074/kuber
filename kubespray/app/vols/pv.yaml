@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  storageClassName: "nfs"
+  accessModes:
+    - ReadWriteMany 
+  capacity:
+    storage: 100Mi
+  hostPath:
+#  nfs:
+#    server: nfs-server-nfs-server-provisioner
+    path: "/data"

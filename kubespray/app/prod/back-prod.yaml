@@ -1,0 +1,41 @@
+# Config Stage env
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-prod
+  labels:
+    app: backend-prod-app
+spec:
+  selector:
+    matchLabels:
+      app: backend-prod-app
+  template:
+    metadata:
+      labels:
+        app: backend-prod-app
+    spec:
+    # Config Containers
+      containers:
+      - name: backend
+        image: nginx:1.18
+#        command: ["sleep", "600"]
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DATABASE_URL
+            value: postgres://postgres:postgres@postgres:5432/news # адрес сервиса БД
+---
+# Config Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-prod-svc
+  namespace: default
+spec:
+  selector:
+    app: backend-prod-app
+  ports:
+    - name: backend-prod
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
