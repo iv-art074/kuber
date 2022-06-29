@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: backend-probe
-  name: backend-probe
+  name: {{ .Release.Name }}-back
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -15,10 +15,9 @@ spec:
         app: backend-probe
     spec:
       containers:
-#        - image: praqma/network-multitool:alpine-extra
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
-          name: {{ .Chart.Name }}
           ports:
             - name: http
               containerPort: {{ .Values.appPort }}

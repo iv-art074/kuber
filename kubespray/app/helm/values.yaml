@@ -1,9 +1,9 @@
 replicaCount: 1
 
-namespace: helm
+#namespace: default
 
 image:
-  repository: praqma/network-multitool:alpine-extra
+  repository: praqma/network-multitool
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
