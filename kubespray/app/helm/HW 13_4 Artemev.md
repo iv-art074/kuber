@@ -58,6 +58,6 @@ REVISION: 1
 TEST SUITE: None
 ```  
 Итого  
-![image](https://user-images.githubusercontent.com/87374285/176458766-741ceb39-9fbf-4f3e-bb5d-16f74207630b.png)
+![image](https://user-images.githubusercontent.com/87374285/176459137-b170295f-d0a1-4ef7-aacd-d8ae065846cc.png)  
 
 
